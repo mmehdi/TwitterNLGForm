@@ -5,7 +5,7 @@
 	<div class="col-lg-8 col-lg-offset-2">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Annotations Form</h3>
+				<h3 class="panel-title">Input form</h3>
 			</div>
 			<div class="panel-body">
 				<form role="form" method="post" id="nlg-form" role="form" action="">
@@ -22,7 +22,7 @@
 					<div class="row form-group">
 						<label class="col-sm-2 control-label" for="bus-services">Bus service(s)</label>
 						<div class="col-sm-8">
-							<input type="text" placeholder="Comma separated bus services which are effected" id="bus-services" name="bus-services" class="form-control">
+							<input type="text" placeholder="Comma separated bus services which are effected" id="bus_services" name="bus_services" class="form-control">
 						</div>
 					</div>
 
@@ -54,7 +54,7 @@
 					<div class="row form-group">
 						<label class="col-sm-2 control-label" for="duration">Duration</label>
 						<div class="col-sm-8">
-							<input type="text" placeholder="Effected durtion: 5mins, 15mins" id="duration" name="duration" class="form-control">
+							<input type="text" placeholder="Effected duration: 5mins, 15mins" id="duration" name="duration" class="form-control">
 						</div>
 					</div>
 
@@ -99,7 +99,7 @@
 
 							<label class="col-sm-2 control-label" for="start_year">Year</label>
 							<div class="col-sm-4">
-								<input type="number" placeholder="2015 or 2014 etc" id="start_month" name="start_month" class="form-control">
+								<input type="number" placeholder="2015 or 2014 etc" id="start_year" name="start_year" class="form-control">
 							</div>
 						</div>
 
@@ -145,7 +145,7 @@
 					<div class="form-group">
 						<div class="col-sm-10">
 							<div class="pull-right">
-								<button type="submit" class="btn btn-primary" onClick="submitForm();">Submit</button>
+								<button type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
 					</div>
@@ -155,13 +155,13 @@
 
 	</div>
 
-	<div class="col-lg-8 col-lg-offset-2" style="display:none;" id="output-form">
+	<div class="col-lg-8 col-lg-offset-2" id="output-form">
 		<div class="panel panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Output</h3>
+				<h3 class="panel-title">NLG output</h3>
 			</div>
 			<div class="panel-body">
-				<p id="output">Output goes here!</p>
+				<p id="output">Waiting for input...</p>
 			</div>
 
 		</div>
@@ -172,6 +172,9 @@
 <?php include('footer.php');?>
 <script type="text/javascript">
 
+/*
+show/hide start and end time
+*/
 $("input[name$='end_date_radio']").click(function() {
 	var radioVal = $(this).val();
 	if(radioVal==1) {
@@ -190,26 +193,30 @@ $("input[name$='start_date_radio']").click(function() {
 	} 
 });
 
+/*
+form submission method
+*/
 
-function submitForm(){
+$("#nlg-form").submit(function(e) {       
+	e.preventDefault();
 	var form=$("#nlg-form");
 
-      $.ajax({
-            type:"POST",
-            url:"nlg-callback.php",
-	        data:form.serialize(),
-            success: function(response) {
-           	console.log(JSON.stringify(response));
-            alert('success');
+	$.ajax({
+		type:"POST",
+		url:"nlg-callback.php",
+		data:form.serialize(),
+		success: function(response) {
+			console.log(JSON.stringify(response));
+			$('#output').text(response);
 			
-           
-         },
-            error: function(response){
+
+		},
+		error: function(response){
                   //console.log(JSON.stringify(response));
                   alert('something went wrong!');
                   //window.location.replace("http://localhost:8888/DesireLines");
-            }
-        });
-}
+              }
+          });
+});
 
 </script>
