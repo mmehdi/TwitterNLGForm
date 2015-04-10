@@ -85,13 +85,11 @@ $data['end_year']=$end_year;
 makeCall($data);
 http_response_code(200);
 
-//echo json_encode($event);
-
-
+?>
+<?php
 function makeCall($data){
 
-//Declare the errors array:
-$errors = array();
+$data = json_encode($data);
 
 //Check if the form variables were submitted:
 $url = APIURL;
@@ -106,6 +104,5 @@ $headers = array("Content-Type: application/json");
 $response  = rest_post($url,$data,$headers);
 
 echo $response;
-
 }
 ?>

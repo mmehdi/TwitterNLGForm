@@ -14,7 +14,10 @@
 					<div class="row form-group">
 						<label class="col-sm-2 control-label" for="event">Event</label>
 						<div class="col-sm-4">
-							<input type="text" placeholder="diversion, delay " id="event" name="event" class="form-control">
+							<select class="form-control" id="event" name="event" required>
+								<option>diversion</option>
+								<option>delay</option>
+							</select>						
 						</div>
 					</div>
 
