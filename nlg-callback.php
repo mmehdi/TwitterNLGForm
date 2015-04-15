@@ -59,7 +59,7 @@ if($_POST['start_date_radio']==1){
 
 	$data['start_time']=date('H', $start_datetime).":".date('i', $start_datetime);
 	$data['start_date']=date('d', $start_datetime);
-	$data['start_month']=date('m', $start_datetime);
+	$data['start_month']=date('F', $start_datetime);
 	$data['start_year']=date('Y', $start_datetime);
 }
 
@@ -73,7 +73,7 @@ if($_POST['end_date_radio']==1){
 
 	$data['end_time']=date('H', $end_datetime).":".date('i', $end_datetime);
 	$data['end_date']=date('d', $end_datetime);
-	$data['end_month']=date('m', $end_datetime);
+	$data['end_month']=date('F', $end_datetime);
 	$data['end_year']=date('Y', $end_datetime);
 }
 
