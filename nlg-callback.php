@@ -49,38 +49,35 @@ if(isset($_POST['service_status']))
 	$service_status=$_POST['service_status'];
 $data['service_status']=$service_status;
 
-if(isset($_POST['start_time']))
-	$start_time=$_POST['start_time'];
-$data['start_time']=$start_time;
+//set the start timestamp
+if($_POST['start_date_radio']==1){
+	$start_datetime = $_POST['start_datetime'];
 
-if(isset($_POST['start_date']))
-	$start_date=$_POST['start_date'];
-$data['start_date']=$start_date;
+	$start_datetime = strtotime($start_datetime);
 
-if(isset($_POST['start_month']))
-	$start_month=$_POST['start_month'];
-$data['start_month']=$start_month;
+	//$formatted_date = date('H:i d-m-Y',$start_datetime);
 
-if(isset($_POST['start_year']))
-	$start_year=$_POST['start_year'];
-$data['start_year']=$start_year;
+	$data['start_time']=date('H', $start_datetime).":".date('i', $start_datetime);
+	$data['start_date']=date('d', $start_datetime);
+	$data['start_month']=date('m', $start_datetime);
+	$data['start_year']=date('Y', $start_datetime);
+}
 
-if(isset($_POST['end_time']))
-	$end_time=$_POST['end_time'];
-$data['end_time']=$end_time;
 
-if(isset($_POST['end_date']))
-	$end_date=$_POST['end_date'];
-$data['end_date']=$end_date;
+if($_POST['end_date_radio']==1){
+	$end_datetime = $_POST['end_datetime'];
 
-if(isset($_POST['end_month']))
-	$end_month=$_POST['end_month'];
-$data['end_month']=$end_month;
+	$end_datetime = strtotime($end_datetime);
 
-if(isset($_POST['end_year']))
-	$end_year=$_POST['end_year'];
-$data['end_year']=$end_year;
+	//$formatted_date = date('H:i d-m-Y',$end_datetime);
 
+	$data['end_time']=date('H', $end_datetime).":".date('i', $end_datetime);
+	$data['end_date']=date('d', $end_datetime);
+	$data['end_month']=date('m', $end_datetime);
+	$data['end_year']=date('Y', $end_datetime);
+}
+
+//var_dump($data['start_time'].' '. $data['start_date'].' '.$data['start_month'].' '.$data['start_year']);
 
 makeCall($data);
 http_response_code(200);

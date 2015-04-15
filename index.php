@@ -80,29 +80,41 @@
 
 
 
+					<div class="row form-group" id="start-date-form" style="display:none;">
+						<label class="col-sm-3 control-label" for="start_date_radio">Hr:min d-m-y</label>
+						<input type="text" id="start_datetime" name="start_datetime" data-format="HH:mm DD-MM-YYYY" data-template="HH : mm DD / MMM / YYYY" >
+					</div>
+
 
 					<!-- Text input-->
-					<fieldset id="start-date-form" style="display:none;">
-						<legend>Start date details</legend>
-						*All fields are optional. (Not entering a date will assume it's for today)
-						<div class="form-group">
-							<label class="col-sm-2 control-label" for="start_time">Time</label>
-							<div class="col-sm-4">
-								<input type="number" placeholder="1200 or 1831" id="start_time" name="start_time" class="form-control">
-							</div>
+					<fieldset id="start-date-formx" style="display:none;">
+						<legend>Start date time details</legend>
+						<div class="form-group" style="display:none;">
 
 							<label class="col-sm-2 control-label" for="start_date">Date</label>
-							<div class="col-sm-4">
-								<input type="number" placeholder="01 or 25 etc" id="start_date" name="start_date" class="form-control">
+							<div class="col-sm-2">
+								<select name="start_date" id="start_date" class="form-control" title="Select date">
+									<option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option>
+									<option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+									<option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option>
+									<option value="31">31</option>
+					            </select>
+								<!--input type="number" placeholder="01 or 25 etc" id="start_date" name="start_date" class="form-control"-->
 							</div>
 							<label class="col-sm-2 control-label" for="start_month">Month</label>
-							<div class="col-sm-4">
-								<input type="number" placeholder="01 or 11 etc" id="start_month" name="start_month" class="form-control">
+							<div class="col-sm-2">
+								<select name="start_month" id="start_month" class="form-control" title="Select month">
+									<option value="01">Jan</option><option value="02">Feb</option><option value="03">March</option><option value="04">April</option><option value="05">May</option><option value="06">June</option><option value="07">July</option><option value="08">Aug</option><option value="09">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+								</select>
+								<!--input type="number" placeholder="01 or 11 etc" id="start_month" name="start_month" class="form-control"-->
 							</div>
 
 							<label class="col-sm-2 control-label" for="start_year">Year</label>
 							<div class="col-sm-4">
-								<input type="number" placeholder="2015 or 2014 etc" id="start_year" name="start_year" class="form-control">
+								<select name="start_year" id="start_year" class="form-control" title="Select year">
+									<option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option>
+								</select>
+								<!--input type="number" placeholder="2015 or 2014 etc" id="start_year" name="start_year" class="form-control"-->
 							</div>
 						</div>
 
@@ -117,8 +129,14 @@
 
 					</div>
 
+
+					<div class="row form-group" id="end-date-form" style="display:none;">
+						<label class="col-sm-3 control-label" for="end_date_radio">Hr:min d-m-y</label>
+						<input type="text" id="end_datetime" name="end_datetime" data-format="HH:mm DD-MM-YYYY" data-template="HH : mm DD / MMM / YYYY" >
+					</div>
+
 					<!-- Text input-->
-					<fieldset id="end-date-form" style="display:none;">
+					<fieldset id="end-date-formx" style="display:none;">
 						<legend>End date details</legend>
 						*All fields are optional. (Not entering a date will assume it's for today)
 						<div class="form-group">
@@ -174,6 +192,32 @@
 
 <?php include('footer.php');?>
 <script type="text/javascript">
+
+var today = new Date();
+var dd = format(today.getDate(),2);
+var mm = format(today.getMonth()+1,2); //January is 0!
+var yyyy = today.getFullYear();
+var HH = format(today.getHours(),2); 
+var min = format(today.getMinutes(),2);
+var current_date = HH+':'+min+' '+dd+'-'+mm+'-'+yyyy;
+//alert(current_date);
+
+$('#start_datetime').combodate({
+	value: current_date
+});  
+
+$('#end_datetime').combodate({
+	value: current_date
+}); 
+
+/*
+formats an interger to N (size) digits
+*/
+function format(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
 
 /*
 show/hide start and end time
