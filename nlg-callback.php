@@ -50,7 +50,7 @@ if(isset($_POST['service_status']))
 $data['service_status']=$service_status;
 
 //set the start timestamp
-if($_POST['start_date_radio']==1){
+if($_POST['start_date_radio']==1 && isset($_POST['start_datetime'])){
 	$start_datetime = $_POST['start_datetime'];
 
 	$start_datetime = strtotime($start_datetime);
