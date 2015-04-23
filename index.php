@@ -47,9 +47,9 @@
 
 					<!-- Text input-->
 					<div class="row form-group">
-						<label class="col-sm-2 control-label" for="diversion_road">Diversion road(s)</label>
+						<label class="col-sm-2 control-label" for="diversion_roads">Diversion road(s)</label>
 						<div class="col-sm-8">
-							<input type="text" placeholder="Comma separated Road/Streets which are effected by diversion" id="diversion_road" name="diversion_road" class="form-control">
+							<input type="text" placeholder="Comma separated Road/Streets which are effected by diversion" id="diversion_roads" name="diversion_roads" class="form-control">
 						</div>
 					</div>
 

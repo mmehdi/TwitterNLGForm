@@ -37,9 +37,9 @@ if(isset($_POST['location']))
 	$location=$_POST['location'];
 $data['location']=$location;
 
-if(isset($_POST['diversion_road']))
-	$diversion_road=$_POST['diversion_road'];
-$data['diversion_road']=$diversion_road;
+if(isset($_POST['diversion_roads']))
+	$diversion_roads=$_POST['diversion_roads'];
+$data['diversion_roads']=$diversion_roads;
 
 if(isset($_POST['duration']))
 	$duration=$_POST['duration'];
