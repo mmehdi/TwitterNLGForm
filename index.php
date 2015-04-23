@@ -254,8 +254,19 @@ $("#nlg-form").submit(function(e) {
 		data:form.serialize(),
 		success: function(response) {
 			console.log(JSON.stringify(response));
-			$('#output').text(response);
+			var result = response.split("<p>");
+			var output="";
+			/*for (var key in result) {
+			   //console.log(key, result[key]);
+			   	var message = response.split("<br>");
+			   	for (var key in message)
+
+			}*/
 			
+			$('#output').text(response);
+			//$('#output').wrapInner(response);
+			$('#output').html(response);
+
 
 		},
 		error: function(response){
