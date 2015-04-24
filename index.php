@@ -41,7 +41,7 @@
 					<div class="row form-group" style="display:none;" id="delay_size_group">
 						<label class="col-sm-2 control-label" for="delay_size">Delay size</label>
 						<div class="col-sm-4">
-							<select class="form-control" id="delay_size" name="delay_size" required>
+							<select class="form-control" id="delay_size" name="delay_size">
 								<option></option>
 								<option>slight</option>
 								<option>minor</option>
@@ -76,7 +76,7 @@
 
 					<!-- Text input-->
 					<div class="row form-group">
-						<label class="col-sm-2 control-label" for="duration">Duration</label>
+						<label class="col-sm-2 control-label" for="duration">Duration/ Timeinterval</label>
 						<div class="col-sm-8">
 							<input type="text" placeholder="Effected duration: 5mins, 15mins" id="duration" name="duration" class="form-control">
 						</div>
@@ -84,10 +84,14 @@
 
 
 					<!-- Text input-->
-					<div class="row form-group">
+					<div class="row form-group" style="display:none;" id="service_status">
 						<label class="col-sm-2 control-label" for="service_status">Service status</label>
-						<div class="col-sm-8">
-							<input type="text" placeholder="normal, suspended." id="service_status" name="service_status" class="form-control">
+						<div class="col-sm-4">
+							<select class="form-control" id="service_status" name="service_status">
+								<option></option>
+								<option>normal</option>
+								<option>suspended</option>
+							</select>						
 						</div>
 					</div>
 
