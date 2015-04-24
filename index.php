@@ -30,6 +30,27 @@
 					</div>
 
 					<!-- Text input-->
+					<div class="row form-group" id="bus_services_directions_group" style="display:none;">
+						<label class="col-sm-2 control-label" for="">Bus service(s) direction(s)</label>
+						<div class="col-sm-8">
+							<input type="text" placeholder="comma separated. E.g: both directions, heading from St Machar Dr." id="bus_services_directions" name="bus_services_directions" class="form-control">
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="row form-group" style="display:none;" id="delay_size_group">
+						<label class="col-sm-2 control-label" for="delay_size">Delay size</label>
+						<div class="col-sm-4">
+							<select class="form-control" id="delay_size" name="delay_size" required>
+								<option></option>
+								<option>slight</option>
+								<option>minor</option>
+								<option>major</option>
+							</select>						
+						</div>
+					</div>
+
+					<!-- Text input-->
 					<div class="row form-group">
 						<label class="col-sm-2 control-label" for="problem">Problem reason</label>
 						<div class="col-sm-8">
@@ -46,7 +67,7 @@
 					</div>
 
 					<!-- Text input-->
-					<div class="row form-group">
+					<div class="row form-group" id="diversion_roads_group">
 						<label class="col-sm-2 control-label" for="diversion_roads">Diversion road(s)</label>
 						<div class="col-sm-8">
 							<input type="text" placeholder="Comma separated Road/Streets which are effected by diversion" id="diversion_roads" name="diversion_roads" class="form-control">
@@ -193,6 +214,10 @@
 <?php include('footer.php');?>
 <script type="text/javascript">
 
+
+$('input:radio[name=end_date_radio]')[1].checked = true;
+$('input:radio[name=start_date_radio]')[1].checked = true;
+
 var today = new Date();
 var dd = format(today.getDate(),2);
 var mm = format(today.getMonth()+1,2); //January is 0!
@@ -240,6 +265,30 @@ $("input[name$='start_date_radio']").click(function() {
 	} 
 });
 
+
+$("#event").change(function () {
+        switch(this.value){
+        	case 'delay':{
+        	$("#diversion_roads_group").hide();
+        	$("#bus_services_directions_group").show();
+        	$("#delay_size_group").show();
+        	
+        	break;	
+        	}
+        	
+        	case 'diversion':{
+        	$("#diversion_roads_group").show();
+        	$("#bus_services_directions_group").hide();
+        	$("#delay_size_group").hide();
+        	
+        	break;	
+        	}
+        	
+        	default:
+        	break;
+        }
+        
+    });
 /*
 form submission method
 */

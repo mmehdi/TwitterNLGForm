@@ -5,7 +5,9 @@ include('core/init.core.php');
 
 $event = "";
 $bus_services = "";
+$bus_services_directions="";
 $problem = "";
+$delay_size="";
 $location = "";
 $diversion_road = "";
 $duration = "";
@@ -28,6 +30,14 @@ $data['event']=$event;
 if(isset($_POST['bus_services']))
 	$bus_services=$_POST['bus_services'];
 $data['bus_services']=$bus_services;
+
+if(isset($_POST['bus_services_directions']))
+	$bus_services_directions=$_POST['bus_services_directions'];
+$data['bus_services_directions']=$bus_services_directions;
+
+if(isset($_POST['delay_size']))
+	$delay_size=$_POST['delay_size'];
+$data['delay_size']=$delay_size;
 
 if(isset($_POST['problem']))
 	$problem=$_POST['problem'];
