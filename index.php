@@ -38,6 +38,14 @@
 					</div>
 
 					<!-- Text input-->
+					<div class="row form-group">
+						<label class="col-sm-2 control-label" for="location">Primary location</label>
+						<div class="col-sm-8">
+							<input type="text" placeholder="St Machar Dr" id="location" name="location" class="form-control">
+						</div>
+					</div>
+					
+					<!-- Text input-->
 					<div class="row form-group" style="display:none;" id="delay_size_group">
 						<label class="col-sm-2 control-label" for="delay_size">Delay size</label>
 						<div class="col-sm-4">
@@ -58,13 +66,6 @@
 						</div>
 					</div>
 
-					<!-- Text input-->
-					<div class="row form-group">
-						<label class="col-sm-2 control-label" for="location">Primary location</label>
-						<div class="col-sm-8">
-							<input type="text" placeholder="St Machar Dr" id="location" name="location" class="form-control">
-						</div>
-					</div>
 
 					<!-- Text input-->
 					<div class="row form-group" id="diversion_roads_group">
