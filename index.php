@@ -17,12 +17,21 @@
 							<select class="form-control" id="event" name="event" required>
 								<option>diversion</option>
 								<option>delay</option>
+								<option>upcoming journey</option>
 							</select>						
 						</div>
 					</div>
 
 					<!-- Text input-->
-					<div class="row form-group">
+					<div class="row form-group template-upcoming-journey">
+						<label class="col-sm-2 control-label" for="passenger-name">Passenger name</label>
+						<div class="col-sm-8">
+							<input type="text" placeholder="Passenger name" id="passenger_name" name="passenger_name" class="form-control">
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="row form-group template-delay template-diversion template-upcoming-journey">
 						<label class="col-sm-2 control-label" for="bus-services">Bus service(s)</label>
 						<div class="col-sm-8">
 							<input type="text" placeholder="Comma separated bus services which are effected" id="bus_services" name="bus_services" class="form-control">
@@ -30,7 +39,7 @@
 					</div>
 
 					<!-- Text input-->
-					<div class="row form-group" id="bus_services_directions_group" style="display:none;">
+					<div class="row form-group template-delay" id="bus_services_directions_group" style="display:none;">
 						<label class="col-sm-2 control-label" for="">Bus service(s) direction(s)</label>
 						<div class="col-sm-8">
 							<input type="text" placeholder="comma separated. E.g: both directions, heading from St Machar Dr." id="bus_services_directions" name="bus_services_directions" class="form-control">
@@ -38,15 +47,24 @@
 					</div>
 
 					<!-- Text input-->
-					<div class="row form-group">
+					<div class="row form-group template-delay template-diversion template-upcoming-journey">
 						<label class="col-sm-2 control-label" for="location">Primary location</label>
 						<div class="col-sm-8">
 							<input type="text" placeholder="St Machar Dr" id="location" name="location" class="form-control">
 						</div>
 					</div>
-					
+
+
 					<!-- Text input-->
-					<div class="row form-group" style="display:none;" id="delay_size_group">
+					<div class="row form-group template-upcoming-journey">
+						<label class="col-sm-2 control-label" for="weather_report">Weather report</label>
+						<div class="col-sm-8">
+							<input type="text" placeholder="sunny, rainy, 7°C, snow, windy and rainy" id="weather_report" name="weather_report" class="form-control">
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="row form-group template-delay" style="display:none;" id="delay_size_group">
 						<label class="col-sm-2 control-label" for="delay_size">Delay size</label>
 						<div class="col-sm-4">
 							<select class="form-control" id="delay_size" name="delay_size">
@@ -59,7 +77,7 @@
 					</div>
 
 					<!-- Text input-->
-					<div class="row form-group">
+					<div class="row form-group template-delay template-diversion">
 						<label class="col-sm-2 control-label" for="problem">Problem reason</label>
 						<div class="col-sm-8">
 							<input type="text" placeholder="Road works, accident, traffic congestion" id="problem" name="problem" class="form-control">
@@ -68,7 +86,7 @@
 
 
 					<!-- Text input-->
-					<div class="row form-group" id="diversion_roads_group">
+					<div class="row form-group template-diversion" id="diversion_roads_group">
 						<label class="col-sm-2 control-label" for="diversion_roads">Diversion road(s)</label>
 						<div class="col-sm-8">
 							<input type="text" placeholder="Comma separated Road/Streets which are effected by diversion" id="diversion_roads" name="diversion_roads" class="form-control">
@@ -76,7 +94,7 @@
 					</div>
 
 					<!-- Text input-->
-					<div class="row form-group">
+					<div class="row form-group template-delay template-diversion template-upcoming-journey">
 						<label class="col-sm-2 control-label" for="duration">Duration/ Timeinterval</label>
 						<div class="col-sm-8">
 							<input type="text" placeholder="Effected duration: 5mins, 15mins" id="duration" name="duration" class="form-control">
@@ -85,7 +103,7 @@
 
 
 					<!-- Text input-->
-					<div class="row form-group" style="display:none;" id="service_status">
+					<div class="row form-group template-delay template-diversion" style="display:none;" id="service_status">
 						<label class="col-sm-2 control-label" for="service_status">Service status</label>
 						<div class="col-sm-4">
 							<select class="form-control" id="service_status" name="service_status">
@@ -219,6 +237,11 @@
 <?php include('footer.php');?>
 <script type="text/javascript">
 
+$( document ).ready(function() {
+        	$(".template-upcoming-journey").hide();
+        	$(".template-delay").hide();
+         	$(".template-diversion").show();});
+
 
 $('input:radio[name=end_date_radio]')[1].checked = true;
 $('input:radio[name=start_date_radio]')[1].checked = true;
@@ -274,21 +297,38 @@ $("input[name$='start_date_radio']").click(function() {
 $("#event").change(function () {
         switch(this.value){
         	case 'delay':{
-        	$("#diversion_roads_group").hide();
-        	$("#bus_services_directions_group").show();
-        	$("#delay_size_group").show();
+
+         	$(".template-diversion").hide();
+        	$(".template-upcoming-journey").hide();
+        	$(".template-delay").show();
+
+        	//$("#diversion_roads_group").hide();
+        	//$("#bus_services_directions_group").show();
+        	//$("#delay_size_group").show();
         	
         	break;	
         	}
         	
         	case 'diversion':{
-        	$("#diversion_roads_group").show();
+/*        	$("#diversion_roads_group").show();
         	$("#bus_services_directions_group").hide();
         	$("#delay_size_group").hide();
-        	
+  */
+
+        	$(".template-upcoming-journey").hide();
+        	$(".template-delay").hide();
+         	$(".template-diversion").show();
+
         	break;	
         	}
-        	
+         	case 'upcoming journey':{
+         	$(".template-delay").hide();
+         	$(".template-diversion").hide();
+        	$(".template-upcoming-journey").show();
+
+        	break;	
+        	}
+
         	default:
         	break;
         }
